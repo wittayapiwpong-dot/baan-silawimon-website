@@ -151,6 +151,13 @@
   .lb .pv{left:6px;top:50%;transform:translateY(-50%)}
   .lb .nx{right:6px;top:50%;transform:translateY(-50%)}
 
+  /* videos */
+  .clips{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+  .clip{min-height:560px;max-width:326px;width:100%;justify-self:center;border-radius:18px;overflow:hidden;border:2px solid var(--gold);background:#000;box-shadow:0 20px 40px rgba(0,0,0,.45)}
+  .clip .fb-video,.clip iframe{display:block;margin:0 auto}
+  .clips-note{text-align:center;color:var(--muted);font-size:14px;margin-top:18px}
+  @media(max-width:900px){.clips{grid-template-columns:repeat(3,80%);overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.clip{scroll-snap-align:center}}
+
   @media (max-width:900px){
     nav.links{display:none}
     .feat-grid{grid-template-columns:repeat(2,1fr)}
@@ -184,6 +191,7 @@
       <a href="#about">เกี่ยวกับเรา</a>
       <a href="#products">งานของเรา</a>
       <a href="#gallery">ผลงาน</a>
+      <a href="#videos">วิดีโอ</a>
       <a href="#steps">ขั้นตอนสั่งทำ</a>
       <a href="#contact">ติดต่อ</a>
     </nav>
@@ -298,7 +306,24 @@
     </div>
   </section>
 
-  <section id="steps" class="bg2">
+  <section id="videos" class="bg2">
+    <div class="wrap">
+      <div class="sec-head">
+        <small>VIDEOS</small>
+        <h2 class="gold-text">ชมงานจริงแบบวิดีโอ</h2>
+        <p>เห็นความละเอียดของงานร้อยมือแบบใกล้ ๆ</p>
+        <div class="divider"></div>
+      </div>
+      <div class="clips">
+        <div class="clip"><div class="fb-video" data-href="https://www.facebook.com/reel/2107205027348268" data-width="320" data-show-text="false" data-allowfullscreen="true" data-lazy="true"></div></div>
+        <div class="clip"><div class="fb-video" data-href="https://www.facebook.com/reel/919751803747559" data-width="320" data-show-text="false" data-allowfullscreen="true" data-lazy="true"></div></div>
+        <div class="clip"><div class="fb-video" data-href="https://www.facebook.com/reel/1164509559469801" data-width="320" data-show-text="false" data-allowfullscreen="true" data-lazy="true"></div></div>
+      </div>
+      <p class="clips-note">วิดีโอเล่นเองแบบปิดเสียง กดที่วิดีโอเพื่อเปิดเสียง</p>
+    </div>
+  </section>
+
+  <section id="steps">
     <div class="wrap">
       <div class="sec-head">
         <small>HOW TO ORDER</small>
@@ -370,5 +395,20 @@
   lb.addEventListener('click',e=>{if(e.target===lb)lb.classList.remove('open')});
   document.addEventListener('keydown',e=>{if(!lb.classList.contains('open'))return;if(e.key==='Escape')lb.classList.remove('open');if(e.key==='ArrowLeft')show(i-1);if(e.key==='ArrowRight')show(i+1)});
 </script>
+<div id="fb-root"></div>
+<script>
+{
+  const players=[];let visible=false;
+  const apply=()=>players.forEach(p=>{try{p.mute();visible?p.play():p.pause()}catch(e){}});
+  window.fbAsyncInit=()=>{
+    FB.init({xfbml:true,version:'v21.0'});
+    FB.Event.subscribe('xfbml.ready',m=>{if(m.type==='video'){players.push(m.instance);try{m.instance.mute()}catch(e){}if(visible)apply()}});
+  };
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>es.forEach(e=>{visible=e.isIntersecting;apply()}),{threshold:0.4}).observe(document.querySelector('#videos .clips'));
+  }
+}
+</script>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/th_TH/sdk.js"></script>
 </body>
 </html>
