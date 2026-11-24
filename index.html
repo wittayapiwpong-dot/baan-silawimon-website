@@ -184,6 +184,9 @@
   .phone .circle svg{width:28px;height:28px;fill:var(--gold2)}
   .phone a{font-family:'Kanit';font-weight:600;font-size:clamp(32px,5vw,48px);letter-spacing:.02em}
   .contact-box .note{color:var(--muted);margin-bottom:26px}
+  .map{width:100%;max-width:360px;margin:0 auto;border:2px solid var(--gold);border-radius:18px;overflow:hidden;background:#1c1712;position:relative;z-index:1}
+  .map iframe{display:block;width:100%;height:240px;border:0}
+  .map a{display:block;text-align:center;padding:12px;font-family:'Kanit';font-size:15px;color:#1a1206;background:linear-gradient(180deg,var(--gold2),var(--gold))}
   .qr{background:#fff;border-radius:18px;padding:16px;max-width:260px;margin:0 auto;text-align:center;position:relative;z-index:1}
   .qr img{width:100%;border-radius:8px}
   .qr p{color:#1d1d1d;font-family:'Kanit';font-size:15px;margin-top:8px}
@@ -441,9 +444,9 @@
             <a href="https://www.facebook.com/profile.php?id=100063602381020" target="_blank" rel="noopener" class="btn btn-ghost">เพจ Facebook</a>
           </div>
         </div>
-        <div class="qr">
-          <img src="img/line-qr.jpg" alt="QR Code LINE บ้านศีลวิมล">
-          <p>สแกนเพื่อแอด LINE</p>
+        <div class="map">
+          <iframe src="https://maps.google.com/maps?cid=11398448355581397506&amp;output=embed" title="แผนที่ร้านบ้านศีลวิมล" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+          <a href="https://maps.app.goo.gl/uHX1zG7WwWA5H8Ki6" target="_blank" rel="noopener">📍 เปิดใน Google Maps / นำทางมาร้าน</a>
         </div>
       </div>
     </div>
